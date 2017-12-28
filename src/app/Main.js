@@ -11,15 +11,18 @@ import { serverApiRecordEvent } from 'app/utils/ServerApiClient';
 import * as steem from '@steemit/steem-js';
 import { determineViewMode } from 'app/utils/Links';
 
-window.addEventListener('error', error => {
+window.addEventListener('error', event => {
     const trace =
-        typeof error.error === 'object' && typeof error.error.stack === 'string'
-            ? error.error.stack
+        typeof event.error === 'object' &&
+        event.error !== null &&
+        typeof event.error.stack === 'string'
+            ? event.error.stack
             : false;
     const report = {
         trace,
-        message: error.message,
+        message: event.message,
         VERSION: process.env.VERSION,
+        href: window.location.href,
     };
     if (window.$STM_csrf) serverApiRecordEvent('client_error', report);
 });
