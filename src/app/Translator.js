@@ -10,7 +10,7 @@ import ko from 'react-intl/locale-data/ko';
 import { DEFAULT_LANGUAGE } from 'app/client_config';
 import tt from 'counterpart';
 
-addLocaleData([...en, ...es, ...ru, ...fr, ...it, ...ko]);
+addLocaleData([...en, ...es, ...ru, ...fr, ...it, ...ko, ...zh]);
 
 tt.registerTranslations('en', require('counterpart/locales/en'));
 tt.registerTranslations('en', require('app/locales/en.json'));
@@ -29,6 +29,9 @@ tt.registerTranslations('it', require('app/locales/it.json'));
 
 tt.registerTranslations('ko', require('app/locales/counterpart/ko'));
 tt.registerTranslations('ko', require('app/locales/ko.json'));
+
+tt.registerTranslations('zh', require('app/locales/counterpart/zh'));
+tt.registerTranslations('zh', require('app/locales/zh.json'));
 
 if (process.env.NODE_ENV === 'production') {
     tt.setFallbackLocale('en');
